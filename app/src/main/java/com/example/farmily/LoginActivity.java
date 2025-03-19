@@ -12,11 +12,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private Spinner roleSpinner;
     private Button loginButton;
     private String selectedRole = "Customer"; // Default role
+
+    DatabaseReference userDatabase, listingDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         roleSpinner = findViewById(R.id.roleSpinner);
         loginButton = findViewById(R.id.loginButton);
+
+        // Initialize DB
+        userDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
+
 
         // Set up Spinner (Dropdown) for Role Selection
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
