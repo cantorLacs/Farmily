@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Farmily</string>
+        <string name="app_name">Farmily</string>
+        <string-array name="user_roles">
+            <item>Customer</item>
+            <item>Farmer</item>
+        </string-array>
 </resources>
