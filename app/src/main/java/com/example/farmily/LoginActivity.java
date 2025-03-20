@@ -35,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
 
         // Initialize DB
-        userDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
+        //userDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        //listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
 
 
         // Set up Spinner (Dropdown) for Role Selection

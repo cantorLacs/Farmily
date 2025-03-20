@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(this, "Registered as " + selectedRole, Toast.LENGTH_SHORT).show();
 
         // Redirecting to LoginActivity
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        Intent intent = new Intent(this, ProductListActivity.class);
         startActivity(intent);
         finish(); // Close Registration Page
     }
