@@ -1,6 +1,21 @@
 package model;
 
+import android.view.View;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class Listing {
+
+
     private String id;
     private String title;
     private String description;
@@ -80,5 +95,17 @@ public class Listing {
                 '}';
     }
 
+
+    public static ArrayList<Listing> findAll(View v){
+        ArrayList<Listing> rList = new ArrayList<Listing>();
+
+
+        Snackbar.make(v,
+                "showDatabase",
+                Snackbar.LENGTH_LONG).show();
+
+
+        return rList;
+    }
 
 }
