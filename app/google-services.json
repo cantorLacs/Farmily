@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1027845723243",
+    "firebase_url": "https://farmily-c0ec2-default-rtdb.firebaseio.com",
+    "project_id": "farmily-c0ec2",
+    "storage_bucket": "farmily-c0ec2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027845723243:android:f6d4773e68377041a64d2e",
+        "android_client_info": {
+          "package_name": "com.example.farmily"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSnATYe0S0wkjS6dIuJlOifsO3nItkul4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
