@@ -1,7 +1,6 @@
 package com.example.farmily;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import model.Sale;
+import model.Order;
 
 public class SalesActivity extends AppCompatActivity {
     private TableLayout tableLayout;
@@ -53,8 +52,8 @@ public class SalesActivity extends AppCompatActivity {
                         addTableHeader();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Sale sale = snapshot.getValue(Sale.class);
-                            addTableRow(sale);
+                            Order order = snapshot.getValue(Order.class);
+                            addTableRow(order);
                         }
                     }
 
@@ -85,26 +84,26 @@ public class SalesActivity extends AppCompatActivity {
         tableLayout.addView(header);
     }
 
-    private void addTableRow(Sale sale) {
+    private void addTableRow(Order order) {
         TableRow row = new TableRow(this);
 
         TextView dateTextView = new TextView(this);
-        dateTextView.setText(sale.getDate());
+        dateTextView.setText(order.getDate());
         dateTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView productTextView = new TextView(this);
-        productTextView.setText(sale.getProduct());
+        productTextView.setText(order.getProduct());
         productTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView quantityTextView = new TextView(this);
-        quantityTextView.setText(String.valueOf(sale.getQuantity()));
+        quantityTextView.setText(String.valueOf(order.getQuantity()));
         quantityTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView totalPriceTextView = new TextView(this);
-        totalPriceTextView.setText(String.valueOf(sale.getTotalPrice()));
+        totalPriceTextView.setText(String.valueOf(order.getTotalPrice()));
         totalPriceTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 

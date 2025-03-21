@@ -1,19 +1,7 @@
 package model;
 
-import android.view.View;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.type.DateTime;
-
-
-public class Sale {
+public class Order {
     private String date;
     private String product;
     private int quantity;
@@ -22,10 +10,10 @@ public class Sale {
     private String seller;
     private double taxes;
 
-    public Sale() {
+    public Order() {
     }
 
-    public Sale(String date, String product, int quantity, double totalPrice, String buyer, String seller, double taxes) {
+    public Order(String date, String product, int quantity, double totalPrice, String buyer, String seller, double taxes) {
         this.date = date;
         this.product = product;
         this.quantity = quantity;
