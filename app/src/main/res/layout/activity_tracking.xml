@@ -6,7 +6,9 @@
     android:id="@+id/activity_traking"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrackingActivity">
+    tools:context=".TrackingActivity"
+    android:background="@color/sunriseBlue"
+    >
 
     <TextView
         android:id="@+id/InventoryTitle"
@@ -49,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go To Listing Activity"
-        app:layout_constraintTop_toBottomOf="@+id/InventoryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSalesHistory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"

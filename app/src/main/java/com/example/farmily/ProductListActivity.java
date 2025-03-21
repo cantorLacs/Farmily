@@ -81,6 +81,9 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         rCard.setRadius(20);
 
+        ViewGroup.MarginLayoutParams cardViewMarginParams = (ViewGroup.MarginLayoutParams) rCard.getLayoutParams();cardViewMarginParams.setMargins(0, 30, 0, 30);
+        rCard.requestLayout();
+
         LinearLayout outer = new LinearLayout(this);
         outer.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -95,7 +98,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         ImageView picture = new ImageView(this);
         picture.setLayoutParams(new LinearLayout.LayoutParams(300,300));
-        picture.setImageResource(R.drawable.grapes);
+        picture.setImageResource(listing.getTitle().equals("Grapes")?R.drawable.grapes:R.drawable.bananas);
         picture.setPadding(30,30,30,30);
 
 
