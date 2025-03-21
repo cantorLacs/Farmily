@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/sunriseBlue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,20 +17,22 @@
         android:text="Hi there,"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/barkBrown"
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:orientation="horizontal">
 
         <SearchView
             android:id="@+id/search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:outlineAmbientShadowColor="@color/barkBrown">
 
         </SearchView>
 
@@ -37,14 +40,20 @@
             android:id="@+id/buttonAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account" />
+            android:text="Account"
+            android:backgroundTint="@color/barkBrown"
+            android:textColor="@color/sunriseBlue"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutCards"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_gravity="center">
+
+
 
 
     </LinearLayout>
