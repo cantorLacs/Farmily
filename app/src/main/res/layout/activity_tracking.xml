@@ -18,6 +18,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-         />
+        android:layout_marginTop="32dp" />
+
+    <Button
+        android:id="@+id/buttonInventory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Inventory"
+        android:backgroundTint="@color/barkBrown"
+        android:textColor="@color/sunriseBlue"
+        app:layout_constraintTop_toBottomOf="@id/InventoryTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/buttonSalesHistory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sales History"
+        android:backgroundTint="@color/barkBrown"
+        android:textColor="@color/sunriseBlue"
+        app:layout_constraintTop_toBottomOf="@id/buttonInventory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
