@@ -1,5 +1,6 @@
 package com.example.farmily;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,24 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 public class TrackingActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
 
-
+    Button buttonGoToListingActivity;
     Button btnInventory;
     Button btnSalesHistory;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tracking);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_traking), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -36,12 +35,15 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
         });
         initialize();
     }
-    private void initialize(){
 
+    private void initialize(){
+        buttonGoToListingActivity = findViewById(R.id.buttonGoToListingActivity);
+        buttonGoToListingActivity.setOnClickListener(this);
         btnInventory = findViewById(R.id.buttonInventory);
         btnSalesHistory = findViewById(R.id.buttonSalesHistory);
         btnInventory.setOnClickListener(this);
         btnSalesHistory.setOnClickListener(this);
+
 
     }
 
@@ -54,6 +56,9 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         } else if (view.getId() == R.id.buttonSalesHistory) {
             intent = new Intent(this, SalesActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.buttonGoToListingActivity){
+            intent = new Intent(this, ListingActivity.class);
             startActivity(intent);
         }
     }
