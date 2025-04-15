@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private Spinner roleSpinner;
-    private Button loginButton;
+    private Button loginButton, registerButton;
     private String selectedRole = "Customer"; // Default role
 
     DatabaseReference userDatabase, listingDatabase;
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         roleSpinner = findViewById(R.id.roleSpinner);
         loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.buttonRegister);
 
         // Initialize DB
         //userDatabase = FirebaseDatabase.getInstance().getReference("Users");
@@ -60,6 +61,12 @@ public class LoginActivity extends AppCompatActivity {
 
         // Login Button Click
         loginButton.setOnClickListener(v -> loginUser());
+        registerButton.setOnClickListener(v -> registerUser());
+    }
+
+    private void registerUser() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     private void loginUser() {
