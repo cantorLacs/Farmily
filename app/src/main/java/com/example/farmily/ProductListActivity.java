@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     LinearLayout layoutCards;
     Button btnAccount;
 
+    SearchView searchBar;
     int sunriseBlue = Color.parseColor("#D3DAD5");
     int barkBrown = Color.parseColor("#482723");
     int darkSageGreen = Color.parseColor("#514E38");
@@ -57,6 +59,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     private void initialize(){
         layoutCards = findViewById(R.id.layoutCards);
         btnAccount = findViewById(R.id.buttonAccount);
+        searchBar = findViewById(R.id.search);
 
         btnAccount.setOnClickListener(this);
 
@@ -64,6 +67,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         fillListingList();
 
+        searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
     }
 
     private void fillListingList(){
@@ -73,7 +77,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    // This function should create a listing card for the feed
+    // This function creates a listing card for the feed
     private void createCard(@NonNull Listing listing){
 
         CardView rCard = new CardView(this);
@@ -83,6 +87,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         ViewGroup.MarginLayoutParams cardViewMarginParams = (ViewGroup.MarginLayoutParams) rCard.getLayoutParams();cardViewMarginParams.setMargins(0, 30, 0, 30);
         rCard.requestLayout();
+
 
         LinearLayout outer = new LinearLayout(this);
         outer.setLayoutParams(new LinearLayout.LayoutParams(
