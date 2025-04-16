@@ -77,8 +77,8 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         editTextDeliveryArea = findViewById(R.id.editTextDeliveryArea);
 
         spPhoto.setOnItemSelectedListener(this);
-        photoList = new ArrayList<>();
-        photoPath = new ArrayList<>();
+        photoList = new ArrayList<String>();
+        photoPath = new ArrayList<String>();
 
         listings = FirebaseDatabase.getInstance().getReference("Listings");
 
@@ -117,8 +117,8 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
         String[] addrParts = addressInput.split(",");
-        if (addrParts.length != 6) {
-            Toast.makeText(this, "Please enter address as: streetNumber, streetName, postalCode, city, province, country", Toast.LENGTH_LONG).show();
+        if (addrParts.length != 5) {
+            Toast.makeText(this, "Please enter address as: streetNumber, streetName, postalCode, city, province", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -133,8 +133,7 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         String postalCode = addrParts[2].trim();
         String city = addrParts[3].trim();
         String province = addrParts[4].trim();
-        String country = addrParts[5].trim();
-        Address address = new Address(streetNumber, streetName, postalCode, city, province, country);
+        Address address = new Address(streetNumber, streetName, postalCode, city, province);
 
 
         Listing listing = new Listing();
@@ -153,9 +152,15 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         String key = listings.push().getKey();
-        listings.child(key).setValue(listing);
-        Toast.makeText(this, "Listing Created Successfully", Toast.LENGTH_SHORT).show();
-
+        listings.child(key).setValue(listing).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(this, "Listing Created Successfully", Toast.LENGTH_SHORT).show();
+                clearFields();
+            } else {
+                Toast.makeText(this, "Error: " + task.getException(), Toast.LENGTH_LONG).show();
+                Log.e("FirebaseError", "Upload failed", task.getException());
+            }
+        });
 
         clearFields();
     }

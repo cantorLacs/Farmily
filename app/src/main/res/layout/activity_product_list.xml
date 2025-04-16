@@ -106,6 +106,12 @@
             android:text="Apply Filter"
             android:backgroundTint="@color/barkBrown"
             android:textColor="@color/sunriseBlue"/>
+        <Button
+            android:id="@+id/buttonResetFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Filter"
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
     <!-- Container for product cards -->

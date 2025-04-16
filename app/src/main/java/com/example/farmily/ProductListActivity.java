@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
@@ -31,11 +33,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Address;
 import model.Listing;
 
 public class ProductListActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
     LinearLayout layoutCards;
-    Button btnAccount;
+    Button btnAccount,buttonFilter;
+    EditText editTextCustomerLocation;
 
     SearchView searchBar;
     int sunriseBlue = Color.parseColor("#D3DAD5");
@@ -66,9 +70,102 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
 
         fillListingList();
+        buttonFilter = findViewById(R.id.buttonFilter);
+        EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
 
-        searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
+        //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
+
+        buttonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String enteredLocation = editTextCustomerLocation.getText().toString().trim();
+                if (!enteredLocation.isEmpty()) {
+                    applyFilterByLocation(enteredLocation);
+                } else {
+                    Toast.makeText(ProductListActivity.this, "Enter a location to filter", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        Button buttonResetFilter = findViewById(R.id.buttonResetFilter);
+        buttonResetFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetFilter();
+            }
+        });
+
     }
+    private void applyFilterByLocation(String location) {
+        String keyword = location.toLowerCase().trim();
+        Log.d("FILTER", "Filtering by city: " + keyword);
+
+        listingDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                layoutCards.removeAllViews();
+                listingList.clear();
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    try {
+                        Listing listing = child.getValue(Listing.class);
+
+                        if (listing != null && listing.getDeliveryArea() != null) {
+                            String city = listing.getDeliveryArea().getCity();
+
+                            if (city != null && city.toLowerCase().contains(keyword)) {
+                                listingList.add(listing);
+                                createCard(listing);
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.e("FILTER", "Skipping invalid listing: " + e.getMessage());
+                    }
+                }
+
+                if (listingList.isEmpty()) {
+                    Toast.makeText(ProductListActivity.this, "No matching listings found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProductListActivity.this, "Filtering failed: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void resetFilter() {
+        layoutCards.removeAllViews();
+        listingList.clear();
+
+        listingDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    try {
+                        Listing listing = child.getValue(Listing.class);
+                        if (listing != null) {
+                            listingList.add(listing);
+                            createCard(listing);
+                        }
+                    } catch (Exception e) {
+                        Log.e("RESET", "Skipping invalid listing: " + e.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProductListActivity.this, "Reset failed: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Helper to avoid null issues
+    private String safe(String value) {
+        return value != null ? value : "";
+    }
+
+
 
     private void fillListingList(){
 

@@ -102,7 +102,7 @@ public class Listing {
                 ", price=" + price +
                 ", stock=" + stock +
                 ", rating=" + rating +
-                ", deliveryArea='" + deliveryArea + '\'' +
+                ", deliveryArea=" + (deliveryArea != null ? deliveryArea.getCity() : "null") +
                 '}';
     }
 

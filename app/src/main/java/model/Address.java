@@ -6,17 +6,17 @@ public class Address {
     private String postalCode;
     private String city;
     private String province;
-    private String country;
+    //private String country;
 
     public Address() {
     }
-    public Address(int streetNumber, String streetName, String postalCode, String city, String province, String country) {
+    public Address(int streetNumber, String streetName, String postalCode, String city, String province) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.postalCode = postalCode;
         this.city = city;
         this.province = province;
-        this.country = country;
+        //this.country = country;
     }
 
     public int getStreetNumber() {
@@ -59,11 +59,11 @@ public class Address {
         this.province = province;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
+//    public String getCountry() {
+//        return country;
+//    }
+//
+//    public void setCountry(String country) {
+//        this.country = country;
+   // }
 }
