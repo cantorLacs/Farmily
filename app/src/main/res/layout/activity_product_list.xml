@@ -61,6 +61,7 @@
             android:queryHint="Search Products"
             android:layout_marginTop="8dp"
             android:outlineAmbientShadowColor="@color/barkBrown" />
+
     </LinearLayout>
 
     <!-- Delivery Area Filter Section -->
@@ -111,9 +112,19 @@
     <LinearLayout
         android:id="@+id/layoutCards"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp"
         android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/buttonCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="-80dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/barkBrown"
+        android:text="Cart" />
 
 </LinearLayout>
