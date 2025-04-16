@@ -74,6 +74,12 @@
         android:layout_height="wrap_content"
         android:hint="Title" />
 
+    <EditText
+        android:id="@+id/editTextDeliveryArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Delivery Area" />
+
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"

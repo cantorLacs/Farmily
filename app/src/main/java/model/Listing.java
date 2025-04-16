@@ -24,7 +24,17 @@ public class Listing {
     private int stock;
     private float rating;
 
+    private Address deliveryArea;
+
     public Listing(){}
+
+    public Address getDeliveryArea() {
+        return deliveryArea;
+    }
+
+    public void setDeliveryArea(Address deliveryArea) {
+        this.deliveryArea = deliveryArea;
+    }
 
     public String getId() {
         return id;
@@ -92,6 +102,7 @@ public class Listing {
                 ", price=" + price +
                 ", stock=" + stock +
                 ", rating=" + rating +
+                ", deliveryArea='" + deliveryArea + '\'' +
                 '}';
     }
 

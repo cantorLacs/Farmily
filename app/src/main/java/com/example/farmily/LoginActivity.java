@@ -2,7 +2,7 @@ package com.example.farmily;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.View; // Make sure you import android.view.View
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText emailInput, passwordInput;
     private Spinner roleSpinner;
-    private Button loginButton;
+    private Button loginButton, registerButton;
     private String selectedRole = "Customer"; // Default role
 
     DatabaseReference userDatabase, listingDatabase;
@@ -33,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         roleSpinner = findViewById(R.id.roleSpinner);
         loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.registerButton);
 
-        // Initialize DB
-        //userDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        //listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
-
+        // (Optional) Initialize DB references as needed
+        // userDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        // listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
 
         // Set up Spinner (Dropdown) for Role Selection
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -58,15 +58,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Login Button Click
+        // Attach click listeners
         loginButton.setOnClickListener(v -> loginUser());
+        registerButton.setOnClickListener(this);
     }
 
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
-        // Basic validation
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show();
             return;
@@ -81,6 +81,13 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Welcome Customer!", Toast.LENGTH_SHORT).show();
         }
 
-        finish(); // Close login activity
+        finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.registerButton) {
+            startActivity(new Intent(this, RegisterActivity.class));
+        }
     }
 }
