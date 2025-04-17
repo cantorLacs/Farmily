@@ -1,6 +1,8 @@
 <resources>
         <string name="app_name">Farmily</string>
-        <string-array name="user_roles">
+    <string name="account">Account</string>
+    <string name="hi_there">Hi there,</string>
+    <string-array name="user_roles">
             <item>Customer</item>
             <item>Farmer</item>
         </string-array>
