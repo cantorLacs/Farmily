@@ -2,6 +2,14 @@
         <string name="app_name">Farmily</string>
     <string name="account">Account</string>
     <string name="hi_there">Hi there,</string>
+    <string name="farmily">FARMILY</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="all_products">All Products</string>
+    <string name="produts_in_area">Produts in Area</string>
+    <string name="city">City</string>
     <string-array name="user_roles">
             <item>Customer</item>
             <item>Farmer</item>
