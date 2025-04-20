@@ -110,14 +110,24 @@
             android:textSize="14sp"/>
     </LinearLayout>
 
-    <!-- Container for product cards -->
     <LinearLayout
         android:id="@+id/layoutCards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center">
+
+        <ListView
+            android:id="@+id/listViewCards"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="10dp"
+            android:divider="#00000000"
+            />
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/buttonCart"
