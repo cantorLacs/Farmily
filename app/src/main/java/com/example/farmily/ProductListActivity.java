@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,18 +36,22 @@ import java.util.List;
 
 import model.Address;
 import model.Listing;
+import model.ListingAdapter;
 
 public class ProductListActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
     LinearLayout layoutCards;
     Button btnAccount,buttonFilter;
     EditText editTextCustomerLocation;
-
+    ListView listViewCards;
     SearchView searchBar;
     int sunriseBlue = Color.parseColor("#D3DAD5");
     int barkBrown = Color.parseColor("#482723");
     int darkSageGreen = Color.parseColor("#514E38");
     ArrayList<Listing> listingList = new ArrayList<Listing>();
     DatabaseReference listingDatabase;
+
+    ListingAdapter listingAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +69,19 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         layoutCards = findViewById(R.id.layoutCards);
         btnAccount = findViewById(R.id.buttonAccount);
         searchBar = findViewById(R.id.search);
+        buttonFilter = findViewById(R.id.buttonFilter);
+        EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
+        listViewCards = findViewById(R.id.listViewCards);
+        Button buttonResetFilter = findViewById(R.id.buttonResetFilter);
 
         btnAccount.setOnClickListener(this);
 
         listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
+        listingDatabase.addValueEventListener(this);
 
-        fillListingList();
-        buttonFilter = findViewById(R.id.buttonFilter);
-        EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
+
+        listingAdapter = new ListingAdapter(this, listingList);
+        listViewCards.setAdapter(listingAdapter);
 
         //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
 
@@ -86,7 +96,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
-        Button buttonResetFilter = findViewById(R.id.buttonResetFilter);
+
         buttonResetFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +112,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         listingDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                layoutCards.removeAllViews();
                 listingList.clear();
 
                 for (DataSnapshot child : snapshot.getChildren()) {
@@ -113,7 +122,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                             String city = listing.getDeliveryArea().getCity();
 
                             if (city != null && city.toLowerCase().contains(keyword)) {
-                                listingList.add(listing);
                                 createCard(listing);
                             }
                         }
@@ -134,7 +142,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         });
     }
     private void resetFilter() {
-        layoutCards.removeAllViews();
         listingList.clear();
 
         listingDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,7 +151,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                     try {
                         Listing listing = child.getValue(Listing.class);
                         if (listing != null) {
-                            listingList.add(listing);
                             createCard(listing);
                         }
                     } catch (Exception e) {
@@ -166,80 +172,12 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-
-    private void fillListingList(){
-
-        listingDatabase.addValueEventListener(this);
-
-
-    }
-
     // This function creates a listing card for the feed
     private void createCard(@NonNull Listing listing){
 
-        CardView rCard = new CardView(this);
-        rCard.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        rCard.setRadius(20);
+        listingList.add(listing);
+        listingAdapter.notifyDataSetChanged();
 
-        ViewGroup.MarginLayoutParams cardViewMarginParams = (ViewGroup.MarginLayoutParams) rCard.getLayoutParams();cardViewMarginParams.setMargins(0, 30, 0, 30);
-        rCard.requestLayout();
-
-
-        LinearLayout outer = new LinearLayout(this);
-        outer.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        outer.setOrientation(LinearLayout.HORIZONTAL);
-
-        LinearLayout inner = new LinearLayout(this);
-        inner.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        inner.setOrientation(LinearLayout.VERTICAL);
-        inner.setPadding(30,30,30,30);
-
-
-        ImageView picture = new ImageView(this);
-        picture.setLayoutParams(new LinearLayout.LayoutParams(300,300));
-        picture.setImageResource(
-                listing.getTitle().equals("Grapes") ? R.drawable.grapes :
-                        listing.getTitle().equals("Bread") ? R.drawable.bread :
-                                listing.getTitle().equals("Berries")? R.drawable.berries :
-                                R.drawable.bananas
-        );
-        picture.setPadding(30,30,30,30);
-
-
-        TextView title = new TextView(this);
-        title.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        title.setText(listing.getTitle());
-        title.setTextSize(25);
-        title.setTextColor(barkBrown);
-
-
-        TextView description = new TextView(this);
-        description.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        description.setText(listing.getDescription());
-        description.setTextSize(15);
-        description.setTextColor(barkBrown);
-
-
-        TextView price = new TextView(this);
-        price.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
-        price.setText(String.valueOf(listing.getPrice()));
-        price.setTextSize(15);
-        price.setTextColor(barkBrown);
-
-        inner.addView(title);
-        inner.addView(description);
-        inner.addView(price);
-        outer.addView(picture);
-        outer.addView(inner);
-        rCard.addView(outer);
-        layoutCards.addView(rCard);
-        //rCard.setId();
     }
 
     @Override

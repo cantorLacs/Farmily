@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/farm_background"
+    android:background="@color/sunriseBlue"
     tools:context=".RegisterActivity">
 
     <!-- Background Overlay -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_overlay" />
+        android:layout_height="match_parent" />
 
     <!-- FARMILY Title -->
     <TextView
@@ -21,7 +20,7 @@
         android:text="FARMILY"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/barkBrown"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true" />
 
@@ -39,6 +38,7 @@
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
             android:background="#CCFFFFFF"
+            android:backgroundTint="@color/darkSageGreen"
             android:padding="24dp">
 
             <LinearLayout
@@ -50,12 +50,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Register to Farmily"
-                    android:textSize="22sp"
+                    android:text="Register"
+                    android:textSize="30sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/sunriseBlue"
                     android:gravity="center"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_margin="16dp" />
 
                 <EditText
                     android:id="@+id/name"
@@ -64,8 +64,10 @@
                     android:hint="Full Name"
                     android:padding="12dp"
                     android:background="@drawable/edittext_bg"
+                    android:backgroundTint="@color/sunriseBlue"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray" />
+                    android:layout_margin="8dp"
+                    />
 
                 <EditText
                     android:id="@+id/email"
@@ -75,9 +77,9 @@
                     android:inputType="textEmailAddress"
                     android:padding="12dp"
                     android:background="@drawable/edittext_bg"
+                    android:backgroundTint="@color/sunriseBlue"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:layout_marginTop="8dp" />
+                    android:layout_margin="8dp" />
 
                 <EditText
                     android:id="@+id/password"
@@ -87,9 +89,9 @@
                     android:inputType="textPassword"
                     android:padding="12dp"
                     android:background="@drawable/edittext_bg"
+                    android:backgroundTint="@color/sunriseBlue"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray"
-                    android:layout_marginTop="8dp" />
+                    android:layout_margin="8dp" />
 
                 <!-- Spinner Dropdown for Role Selection -->
                 <Spinner
@@ -97,7 +99,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_bg"
-                    android:layout_marginTop="12dp" />
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/sunriseBlue"/>
 
                 <Button
                     android:id="@+id/registerButton"
@@ -105,8 +108,8 @@
                     android:layout_height="wrap_content"
                     android:text="Register"
                     android:textColor="@color/white"
-                    android:background="@drawable/button_bg"
-                    android:layout_marginTop="16dp"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/barkBrown"
                     android:padding="12dp" />
 
             </LinearLayout>
