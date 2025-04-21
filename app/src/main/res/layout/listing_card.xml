@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/outer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -19,13 +19,13 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:padding="10dp"
-            android:src="@drawable/bananas"
-        />
+            android:src="@drawable/bananas" />
 
         <LinearLayout
             android:id="@+id/inner"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -52,7 +52,55 @@
                 android:text="Price"
                 android:textSize="15sp"
                 android:textColor="@color/barkBrown" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/counterLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/buttonDecrease"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="0sp"
+                    android:backgroundTint="@color/barkBrown"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/textCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:backgroundTint="@color/barkBrown"
+                    android:padding="5dp" />
+
+                <Button
+                    android:id="@+id/buttonIncrease"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="0sp"
+                    android:backgroundTint="@color/barkBrown"
+                    android:text="+" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonAddToCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add to Cart"
+                android:backgroundTint="@color/barkBrown"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
     </LinearLayout>
 
