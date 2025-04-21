@@ -105,28 +105,8 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
-//        listViewCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Listing l = (Listing) listViewCards.getItemAtPosition(position);
-//                Toast.makeText(ProductListActivity.this,"heyy there",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
 
         //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
-
-//        buttonFilter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String enteredLocation = editTextCustomerLocation.getText().toString().trim();
-//                if (!enteredLocation.isEmpty()) {
-//                    applyFilterByLocation(enteredLocation);
-//                } else {
-//                    Toast.makeText(ProductListActivity.this, "Enter a location to filter", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
 
         buttonResetFilter.setOnClickListener(new View.OnClickListener() {
