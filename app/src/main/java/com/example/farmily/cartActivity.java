@@ -49,33 +49,46 @@ public class cartActivity extends AppCompatActivity {
 
     private void displayCartItems() {
         ArrayList<Listing> productList = cart.getProductList();
-        tableLayout.removeAllViews(); // Limpiar la tabla antes de agregar
+        tableLayout.removeAllViews(); // Clear the table before adding
 
         float totalPrice = 0;
 
-        // Agregar encabezados de la tabla
+        // Add table headers
         TableRow headerRow = new TableRow(this);
         headerRow.addView(createTextView("Item"));
         headerRow.addView(createTextView("Quantity"));
         headerRow.addView(createTextView("Price"));
+        headerRow.addView(createTextView("Actions")); // For the remove button
         tableLayout.addView(headerRow);
 
-        for (Listing listing : productList) {
+        for (int i = 0; i < productList.size(); i++) {
+            Listing listing = productList.get(i);
             TableRow row = new TableRow(this);
+
             TextView title = createTextView(listing.getTitle());
             TextView quantity = createTextView(String.valueOf(listing.getQuantity()));
             TextView price = createTextView(String.valueOf(listing.getPrice()));
+            Button buttonRemove = new Button(this);
+            buttonRemove.setText("Remove");
 
             row.addView(title);
             row.addView(quantity);
             row.addView(price);
+            row.addView(buttonRemove);
             tableLayout.addView(row);
 
-            // Calcular el precio total (cantidad * precio)
+            // Calculate total price
             totalPrice += listing.getPrice() * listing.getQuantity();
+
+            // Set the remove button's click listener
+            buttonRemove.setOnClickListener(v -> {
+                cart.removeFromCart(listing); // Implement this method in your Cart class
+                displayCartItems(); // Refresh the cart display
+                Toast.makeText(this, "Removed " + listing.getTitle() + " from cart", Toast.LENGTH_SHORT).show();
+            });
         }
 
-        // Mostrar el precio total
+        // Display total price
         totalPriceTextView.setText("Total: $" + totalPrice);
     }
 

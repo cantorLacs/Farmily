@@ -40,7 +40,7 @@ public class Cart implements Serializable {
 
     public void removeFromCart(Listing productListing){
 
-        productListingList.remove(productListing);// To test, it might not work when looking for ref
+        productListingList.remove(productListing);
         totalPrice -= productListing.getPrice();
 
     }
