@@ -11,9 +11,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Listing {
+public class Listing implements Serializable {
 
 
     private String id;
@@ -23,6 +24,16 @@ public class Listing {
     private float price;
     private int stock;
     private float rating;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    private int quantity;
 
     private Address deliveryArea;
 

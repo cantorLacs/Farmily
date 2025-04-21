@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Address;
+import model.Cart;
 import model.Listing;
 import model.ListingAdapter;
 
@@ -51,11 +52,13 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     DatabaseReference listingDatabase;
 
     ListingAdapter listingAdapter;
+    private Cart cart;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cart = new Cart();
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product_list);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -83,6 +86,9 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         listingAdapter = new ListingAdapter(this, listingList);
         listViewCards.setAdapter(listingAdapter);
 
+        Button buttonCart = findViewById(R.id.buttonCart);
+        buttonCart.setOnClickListener(v -> openCartActivity());
+
         //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
 
         buttonFilter.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +103,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+
         buttonResetFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +111,11 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+    }
+    private void openCartActivity() {
+        Intent intent = new Intent(this, cartActivity.class);
+        intent.putExtra("CART", cart);
+        startActivity(intent);
     }
     private void applyFilterByLocation(String location) {
         String keyword = location.toLowerCase().trim();
@@ -208,6 +220,10 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                     Toast.LENGTH_LONG).show();
 
         }
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 
     @Override
