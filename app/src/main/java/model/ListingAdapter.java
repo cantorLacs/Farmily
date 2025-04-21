@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.farmily.ProductListActivity;
 import com.example.farmily.R;
 
 import java.util.ArrayList;
@@ -99,9 +100,15 @@ public class ListingAdapter extends BaseAdapter {
         });
 
         buttonAddToCart.setOnClickListener(v -> {
+
             int quantity = quantityMap.get(position);
-            Toast.makeText(context, "Added " + quantity + " of " + listing.getTitle() + " to cart", Toast.LENGTH_SHORT).show();
-            // TODO
+
+            if (context instanceof ProductListActivity) {
+                Cart cart = ((ProductListActivity) context).getCart();
+                listing.setQuantity(quantity);
+                cart.addToCart(listing);
+                Toast.makeText(context, "Added " + quantity + " of " + listing.getTitle() + " to cart", Toast.LENGTH_SHORT).show();
+            }
         });
 
         return view;

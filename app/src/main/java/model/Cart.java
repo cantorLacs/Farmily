@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cart {
+public class Cart implements Serializable {
     private ArrayList<Listing> productListingList;
     private float totalPrice;
     private String status;

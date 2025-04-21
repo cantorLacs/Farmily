@@ -1,5 +1,5 @@
 <resources>
-        <string name="app_name">Farmily</string>
+    <string name="app_name">Farmily</string>
     <string name="account">Account</string>
     <string name="hi_there">Hi there,</string>
     <string name="farmily">FARMILY</string>
@@ -11,7 +11,7 @@
     <string name="produts_in_area">Produts in Area</string>
     <string name="city">City</string>
     <string-array name="user_roles">
-            <item>Customer</item>
-            <item>Farmer</item>
-        </string-array>
+        <item>Customer</item>
+        <item>Farmer</item>
+    </string-array>
 </resources>
