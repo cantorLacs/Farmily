@@ -76,13 +76,13 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         btnAccount = findViewById(R.id.buttonAccount);
         searchBar = findViewById(R.id.search);
         buttonFilter = findViewById(R.id.buttonFilter);
-        editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
+        EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
         listViewCards = findViewById(R.id.listViewCards);
-        buttonResetFilter = findViewById(R.id.buttonResetFilter);
-        btnCart = findViewById(R.id.buttonCart);
+        Button buttonResetFilter = findViewById(R.id.buttonResetFilter);
+        //btnCart = findViewById(R.id.buttonCart);
 
         btnAccount.setOnClickListener(this);
-        btnCart.setOnClickListener(this);
+        //btnCart.setOnClickListener(this);
 
         listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
         listingDatabase.addValueEventListener(this);
@@ -93,16 +93,6 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         Button buttonCart = findViewById(R.id.buttonCart);
         buttonCart.setOnClickListener(v -> openCartActivity());
-
-        listViewCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Listing l = (Listing) listViewCards.getItemAtPosition(position);
-                Toast.makeText(ProductListActivity.this,"heyy there",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
 
         buttonFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +105,28 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+//        listViewCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Listing l = (Listing) listViewCards.getItemAtPosition(position);
+//                Toast.makeText(ProductListActivity.this,"heyy there",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+
+        //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
+
+//        buttonFilter.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String enteredLocation = editTextCustomerLocation.getText().toString().trim();
+//                if (!enteredLocation.isEmpty()) {
+//                    applyFilterByLocation(enteredLocation);
+//                } else {
+//                    Toast.makeText(ProductListActivity.this, "Enter a location to filter", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
 
         buttonResetFilter.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +166,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                         Log.e("FILTER", "Skipping invalid listing: " + e.getMessage());
                     }
                 }
+                listingAdapter.notifyDataSetChanged();
 
                 if (listingList.isEmpty()) {
                     Toast.makeText(ProductListActivity.this, "No matching listings found", Toast.LENGTH_SHORT).show();
@@ -182,6 +195,8 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
                         Log.e("RESET", "Skipping invalid listing: " + e.getMessage());
                     }
                 }
+                listingAdapter.notifyDataSetChanged();
+
             }
 
             @Override
