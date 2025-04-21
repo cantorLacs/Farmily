@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,6 +43,8 @@ import model.ListingAdapter;
 public class ProductListActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
     LinearLayout layoutCards;
     Button btnAccount,buttonFilter;
+    Button buttonResetFilter;
+    Button btnCart;
     EditText editTextCustomerLocation;
     ListView listViewCards;
     SearchView searchBar;
@@ -49,11 +52,11 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     int barkBrown = Color.parseColor("#482723");
     int darkSageGreen = Color.parseColor("#514E38");
     ArrayList<Listing> listingList = new ArrayList<Listing>();
+    ArrayList<Listing> cartList = new ArrayList<Listing>();
     DatabaseReference listingDatabase;
-
     ListingAdapter listingAdapter;
     private Cart cart;
-
+    // add bottom sheet for cart
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +76,13 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
         btnAccount = findViewById(R.id.buttonAccount);
         searchBar = findViewById(R.id.search);
         buttonFilter = findViewById(R.id.buttonFilter);
-        EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
+        editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
         listViewCards = findViewById(R.id.listViewCards);
-        Button buttonResetFilter = findViewById(R.id.buttonResetFilter);
+        buttonResetFilter = findViewById(R.id.buttonResetFilter);
+        btnCart = findViewById(R.id.buttonCart);
 
         btnAccount.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
 
         listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
         listingDatabase.addValueEventListener(this);
@@ -88,6 +93,14 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
         Button buttonCart = findViewById(R.id.buttonCart);
         buttonCart.setOnClickListener(v -> openCartActivity());
+
+        listViewCards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Listing l = (Listing) listViewCards.getItemAtPosition(position);
+                Toast.makeText(ProductListActivity.this,"heyy there",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //searchBar.setQuery("125 Avenue du Mont-Royal Ouest",false);
 
@@ -188,31 +201,34 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     private void createCard(@NonNull Listing listing){
 
         listingList.add(listing);
-        listingAdapter.notifyDataSetChanged();
 
     }
 
     @Override
     public void onClick(View v) {
         //Listing.findAll(v);
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        int id = v.getId();
+        if(id == btnAccount.getId()){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
     public void onDataChange(@NonNull DataSnapshot snapshot) {
         if (snapshot.exists()){
-
+            listingList.clear();
             for (DataSnapshot child: snapshot.getChildren()){
                 String key = child.getKey().toString();
                 Listing listing = new Listing();
                 listing.setTitle(snapshot.child(key).child("title").getValue().toString());
                 listing.setDescription(snapshot.child(key).child("description").getValue().toString());
                 listing.setPrice( Float.parseFloat(snapshot.child(key).child("price").getValue().toString()));
+                listing.setImagePath(snapshot.child(key).child("imagePath").getValue().toString());
                 createCard(listing);
             }
-//
+            listingAdapter.notifyDataSetChanged();
+
         }
         else{
             Toast.makeText(this,

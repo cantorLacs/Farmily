@@ -21,6 +21,7 @@ public class ListingAdapter extends BaseAdapter {
     private Context context;
     private HashMap<Integer, Integer> quantityMap = new HashMap<>();
 
+
     public ListingAdapter(Context context, ArrayList<Listing> listingArrayList) {
         this.listingArrayList = listingArrayList;
         this.context = context;
@@ -68,19 +69,8 @@ public class ListingAdapter extends BaseAdapter {
         description.setText(listing.getDescription());
         price.setText(String.valueOf(listing.getPrice()));
 
-        int imageRes = R.drawable.bananas;
-        switch (listing.getTitle()) {
-            case "Grapes":
-                imageRes = R.drawable.grapes;
-                break;
-            case "Bread":
-                imageRes = R.drawable.bread;
-                break;
-            case "Berries":
-                imageRes = R.drawable.berries;
-                break;
-        }
-        picture.setImageResource(imageRes);
+        int imageId = context.getResources().getIdentifier(listing.getImagePath(),"drawable",context.getPackageName());
+        picture.setImageResource(imageId);
 
         quantityMap.putIfAbsent(position, 1);
         textCounter.setText(String.valueOf(quantityMap.get(position)));
