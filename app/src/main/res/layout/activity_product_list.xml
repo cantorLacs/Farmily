@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/account"
-        android:backgroundTint="@color/barkBrown"
+        android:backgroundTint="@color/darkSageGreen"
         android:textColor="@color/sunriseBlue"
         android:layout_gravity="end"
         android:layout_marginTop="20dp"
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/produts_in_area"
-            android:backgroundTint="@color/barkBrown"
+            android:backgroundTint="@color/darkSageGreen"
             android:textColor="@color/sunriseBlue"
             android:textSize="14sp"/>
         <Button
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/all_products"
-            android:backgroundTint="@color/barkBrown"
+            android:backgroundTint="@color/darkSageGreen"
             android:layout_marginStart="8dp"
             android:textColor="@color/sunriseBlue"
             android:textSize="14sp"/>
@@ -136,7 +136,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="-80dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/barkBrown"
+        android:backgroundTint="@color/darkSageGreen"
         android:text="Cart" />
 
 </LinearLayout>

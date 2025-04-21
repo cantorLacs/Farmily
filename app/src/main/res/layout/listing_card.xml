@@ -19,13 +19,15 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:padding="10dp"
-            android:src="@drawable/bananas" />
+            android:src="@drawable/bananas"
+            android:layout_weight="1"
+        />
 
         <LinearLayout
             android:id="@+id/inner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="6"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -57,9 +59,10 @@
         <LinearLayout
             android:id="@+id/counterLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,11 +72,17 @@
 
                 <Button
                     android:id="@+id/buttonDecrease"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="0sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@color/barkBrown"
-                    android:text="-" />
+                    android:text="-"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="2dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    />
 
                 <TextView
                     android:id="@+id/textCounter"
@@ -86,21 +95,32 @@
 
                 <Button
                     android:id="@+id/buttonIncrease"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="0sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="2dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
                     android:backgroundTint="@color/barkBrown"
                     android:text="+" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/buttonAddToCart"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add to Cart"
                 android:backgroundTint="@color/barkBrown"
                 android:textSize="12sp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"/>
         </LinearLayout>
     </LinearLayout>
 
