@@ -95,8 +95,9 @@ public class ListingAdapter extends BaseAdapter {
 
             if (context instanceof ProductListActivity) {
                 Cart cart = ((ProductListActivity) context).getCart();
-                listing.setQuantity(quantity);
-                cart.addToCart(listing);
+                Listing listingCopy = listing.copy();
+                listingCopy.setQuantity(quantity);
+                cart.addToCart(listingCopy);
                 Toast.makeText(context, "Added " + quantity + " of " + listing.getTitle() + " to cart", Toast.LENGTH_SHORT).show();
             }
         });

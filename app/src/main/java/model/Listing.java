@@ -117,6 +117,14 @@ public class Listing implements Serializable {
                 '}';
     }
 
+    public Listing copy() {
+        Listing copy = new Listing();
+        copy.title = this.title;
+        copy.description = this.description;
+        copy.price = this.price;
+        copy.imagePath = this.imagePath;
+        return copy;
+    }
 
     public static ArrayList<Listing> findAll(View v){
         ArrayList<Listing> rList = new ArrayList<Listing>();
