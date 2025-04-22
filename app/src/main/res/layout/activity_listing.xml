@@ -9,6 +9,36 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/buttonReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            android:backgroundTint="@color/barkBrown"
+            android:textColor="@color/sunriseBlue"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/ProductsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a product"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/barkBrown"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="2dp"/>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/textViewInstruction"
         android:layout_width="match_parent"

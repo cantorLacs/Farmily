@@ -16,12 +16,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.type.DateTime;
-
 import java.time.LocalDate;
 import java.util.Date;
+import java.text.DecimalFormat;
+
 
 import model.Cart;
 import model.Listing;
@@ -115,6 +117,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         }
 
         // Set the total price
-        textViewTotalPrice.setText("Total Price: $" + totalPrice);
+        DecimalFormat df = new DecimalFormat("#.00");
+        textViewTotalPrice.setText("Total: $" + df.format(totalPrice));
     }
 }

@@ -13,7 +13,7 @@
     <!-- Top Account Button (aligned to the right) -->
 
     <Button
-        android:id="@+id/buttonAccount"
+        android:id="@+id/buttonReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/account"

@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import model.Cart;
 import model.Listing;
 
-public class cartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
     private Cart cart;
@@ -33,21 +35,23 @@ public class cartActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Initialize();
+    }
 
+    private void Initialize() {
         tableLayout = findViewById(R.id.tableLayout);
-        Button buttonAccount = findViewById(R.id.buttonAccount);
+        Button buttonAccount = findViewById(R.id.buttonReturn);
         totalPriceTextView = findViewById(R.id.totalPriceTextView);
         Button buttonProceedToPayment = findViewById(R.id.buttonProceedToPayment);
 
-        cart = (Cart) getIntent().getSerializableExtra("CART"); // Asegúrate de que Cart implemente Serializable
-
+        cart = (Cart) getIntent().getSerializableExtra("CART");
         if (cart != null) {
             displayCartItems();
         } else {
             Toast.makeText(this, "No items in the cart", Toast.LENGTH_SHORT).show();
         }
 
-        buttonAccount.setOnClickListener(v -> finish()); // Regresar a la actividad anterior
+        buttonAccount.setOnClickListener(v -> finish());
 
         // Set up click listener for the Proceed to Payment button
         buttonProceedToPayment.setOnClickListener(v -> {
@@ -97,11 +101,12 @@ public class cartActivity extends AppCompatActivity {
         }
 
         // Display total price
-        totalPriceTextView.setText("Total: $" + totalPrice);
+        DecimalFormat df = new DecimalFormat("#.00");
+        totalPriceTextView.setText("Total: $" + df.format(totalPrice));
     }
 
     private void proceedToPayment() {
-        Intent intent = new Intent(cartActivity.this, PaymentActivity.class);
+        Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
         intent.putExtra("CART", cart); // Pass the cart object to PaymentActivity
         intent.putExtra("TOTAL_PRICE", totalPrice);
         startActivity(intent);

@@ -18,7 +18,7 @@
         android:layout_marginTop="16dp">
 
         <Button
-            android:id="@+id/buttonAccount"
+            android:id="@+id/buttonReturn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Return"
@@ -30,7 +30,7 @@
             android:id="@+id/ProductsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sales"
+            android:text="My products"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/barkBrown"

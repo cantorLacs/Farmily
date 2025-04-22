@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".cartActivity">
+    tools:context=".CartActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         android:layout_marginTop="16dp">
 
         <Button
-            android:id="@+id/buttonAccount"
+            android:id="@+id/buttonReturn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Return"
@@ -30,13 +30,13 @@
             android:id="@+id/ProductsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sales History"
-            android:textSize="24sp"
+            android:text="Shopping Cart"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/barkBrown"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="50dp"/>
     </RelativeLayout>
 
     <LinearLayout
