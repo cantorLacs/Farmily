@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 import model.Address;
 import model.GitHubUtilities;
-import model.Listing;  // Make sure you import your Listing model
+import model.Listing;
 
 public class ListingActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 

@@ -117,6 +117,15 @@
             android:layout_marginEnd="40dp"
             />
 
+        <Button
+            android:id="@+id/buttonProceedToPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceed to Payment"
+            android:backgroundTint="@color/barkBrown"
+            android:textColor="@color/sunriseBlue"
+            android:layout_marginTop="20dp"/>
+
     </LinearLayout>
 
 </LinearLayout>
