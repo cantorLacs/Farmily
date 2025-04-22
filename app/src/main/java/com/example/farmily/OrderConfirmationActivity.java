@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.DecimalFormat;
+
 import model.Cart;
 import model.Listing;
 
@@ -33,7 +36,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-//        textViewOrderDetails = findViewById(R.id.textViewItems);
         textViewTotalPrice = findViewById(R.id.textViewTotalPrice);
         Button buttonDone = findViewById(R.id.buttonDone);
 
@@ -74,22 +76,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         }
 
         // Set the total price
-        textViewTotalPrice.setText("Total Price: $" + totalPrice);
+        DecimalFormat df = new DecimalFormat("#.00");
+        textViewTotalPrice.setText("Total: $" + df.format(totalPrice));
     }
-//    private void displayOrderDetails(Cart cart) {
-//        StringBuilder orderDetails = new StringBuilder();
-//        float totalPrice = cart.getTotalPrice();
-//
-//        // Loop through the product listings in the cart
-//        for (Listing listing : cart.getProductList()) {
-//            orderDetails.append("Item: ").append(listing.getTitle())
-//                    .append("\nQuantity: ").append(listing.getQuantity())
-//                    .append("\nPrice: $").append(listing.getPrice())
-//                    .append("\n\n");
-//        }
-//
-//        // Set the order details and total price
-//        textViewOrderDetails.setText(orderDetails.toString());
-//        textViewTotalPrice.setText("Total Price: $" + totalPrice);
-//    }
 }

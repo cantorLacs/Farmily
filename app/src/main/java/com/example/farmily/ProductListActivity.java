@@ -1,27 +1,20 @@
 package com.example.farmily;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -33,9 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import model.Address;
 import model.Cart;
 import model.Listing;
 import model.ListingAdapter;
@@ -73,7 +64,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
     }
     private void initialize(){
         layoutCards = findViewById(R.id.layoutCards);
-        btnAccount = findViewById(R.id.buttonAccount);
+        btnAccount = findViewById(R.id.buttonReturn);
         searchBar = findViewById(R.id.search);
         buttonFilter = findViewById(R.id.buttonFilter);
         EditText editTextCustomerLocation = findViewById(R.id.editTextCustomerLocation);
@@ -118,7 +109,7 @@ public class ProductListActivity extends AppCompatActivity implements View.OnCli
 
     }
     private void openCartActivity() {
-        Intent intent = new Intent(this, cartActivity.class);
+        Intent intent = new Intent(this, CartActivity.class);
         intent.putExtra("CART", cart);
         startActivity(intent);
     }

@@ -2,6 +2,7 @@ package com.example.farmily;
 
 import static android.Manifest.permission.READ_MEDIA_IMAGES;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -50,6 +51,7 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<String> photoPath;
     private ImageView imPhoto;
     DatabaseReference listings;
+    Button buttonReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,9 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         ActivityCompat.requestPermissions(this, new String[]{READ_MEDIA_IMAGES}, PackageManager.PERMISSION_GRANTED);
         getFilesInfoFromDownloads();
 
+        buttonReturn = findViewById(R.id.buttonReturn);
+        buttonReturn.setOnClickListener(this);
+
         buttonSubmit = findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(this);
         this.textViewPhoto.setOnClickListener(v -> getFilesInfoFromDownloads());
@@ -92,6 +97,12 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == R.id.buttonReturn) {
+            Intent intent = new Intent(ListingActivity.this, TrackingActivity.class);
+            startActivity(intent);
+            finish(); // Optional: finish the current activity
+        }
 
         String description = editTextDescription.getText().toString().trim();
         String productId = editTextProductId.getText().toString().trim();
@@ -116,25 +127,8 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "Price and Stock must be valid numbers", Toast.LENGTH_SHORT).show();
             return;
         }
-        String[] addrParts = addressInput.split(",");
-        if (addrParts.length != 5) {
-            Toast.makeText(this, "Please enter address as: streetNumber, streetName, postalCode, city, province", Toast.LENGTH_LONG).show();
-            return;
-        }
 
-        int streetNumber;
-        try {
-            streetNumber = Integer.parseInt(addrParts[0].trim());
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid street number", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String streetName = addrParts[1].trim();
-        String postalCode = addrParts[2].trim();
-        String city = addrParts[3].trim();
-        String province = addrParts[4].trim();
-        Address address = new Address(streetNumber, streetName, postalCode, city, province);
-
+        Address address = new Address(addressInput);
 
         Listing listing = new Listing();
         listing.setId(productId);

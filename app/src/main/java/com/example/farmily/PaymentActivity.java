@@ -26,6 +26,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     private EditText editTextCVV;
     private TextView textViewTotalPriceValue;
     private Button buttonPay;
+    private Button buttonReturn;
+    private Cart cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +49,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         editTextExpiryDate = findViewById(R.id.expiryDate);
         editTextCVV = findViewById(R.id.cvv);
         buttonPay = findViewById(R.id.btnPay);
-        // buttonPay.setOnClickListener(v -> processPayment());
         buttonPay.setOnClickListener(this);
+        buttonReturn = findViewById(R.id.buttonReturn);
+        buttonReturn.setOnClickListener(this);
 
         // Get the total price from the intent
         float totalPrice = getIntent().getFloatExtra("TOTAL_PRICE", 0.00F);
@@ -159,6 +162,12 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v.getId() == R.id.btnPay) {
             processPayment();
+        }
+        if (v.getId() == R.id.buttonReturn) {
+            Intent intent = new Intent(PaymentActivity.this, ProductListActivity.class);
+            intent.putExtra("CART", cart);
+            startActivity(intent);
+            finish(); // Optional: finish the current activity
         }
     }
 }
