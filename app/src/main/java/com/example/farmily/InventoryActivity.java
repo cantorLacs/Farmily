@@ -1,5 +1,6 @@
 package com.example.farmily;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,7 @@ import model.Listing;
 
 public class InventoryActivity extends AppCompatActivity implements View.OnClickListener, ValueEventListener {
     LinearLayout layoutCards;
-    Button btnAccount;
+    Button buttonReturn;
 
     int sunriseBlue = Color.parseColor("#D3DAD5");
     int barkBrown = Color.parseColor("#482723");
@@ -53,9 +54,9 @@ public class InventoryActivity extends AppCompatActivity implements View.OnClick
 
     private void initialize() {
         layoutCards = findViewById(R.id.layoutCards);
-        btnAccount = findViewById(R.id.buttonAccount);
 
-        btnAccount.setOnClickListener(this);
+        buttonReturn = findViewById(R.id.buttonReturn);
+        buttonReturn.setOnClickListener(this);
 
         listingDatabase = FirebaseDatabase.getInstance().getReference("Listings");
 
@@ -137,10 +138,11 @@ public class InventoryActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-//        //Listing.findAll(v);
-//
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        startActivity(intent);
+        if (v.getId() == R.id.buttonReturn) {
+            Intent intent = new Intent(InventoryActivity.this, TrackingActivity.class);
+            startActivity(intent);
+            finish(); // Optional: finish the current activity
+        }
     }
 
     @Override

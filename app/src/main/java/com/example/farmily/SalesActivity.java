@@ -1,6 +1,9 @@
 package com.example.farmily;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,8 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import model.Order;
 
-public class SalesActivity extends AppCompatActivity {
+public class SalesActivity extends AppCompatActivity implements View.OnClickListener {
     private TableLayout tableLayout;
+    Button buttonReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class SalesActivity extends AppCompatActivity {
         });
 
         loadSales();
+        buttonReturn = findViewById(R.id.buttonReturn);
+        buttonReturn.setOnClickListener(this);
     }
 
     private void loadSales() {
@@ -114,4 +120,14 @@ public class SalesActivity extends AppCompatActivity {
 
         tableLayout.addView(row);
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.buttonReturn) {
+            Intent intent = new Intent(SalesActivity.this, TrackingActivity.class);
+            startActivity(intent);
+            finish(); // Optional: finish the current activity
+        }
+    }
+
 }
