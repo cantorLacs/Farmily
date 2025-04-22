@@ -14,8 +14,8 @@
         android:id="@+id/InventoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Inventory Page"
-        android:textSize="18sp"
+        android:text="Welcome to the farmer Page"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,32 +23,35 @@
         android:layout_marginTop="32dp" />
 
     <Button
+        android:layout_marginTop="50dp"
         android:id="@+id/buttonInventory"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Inventory"
-        android:backgroundTint="@color/barkBrown"
-        android:textColor="@color/sunriseBlue"
-        app:layout_constraintTop_toBottomOf="@id/InventoryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/InventoryTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:gravity="center"
+        android:backgroundTint="@color/barkBrown"
+        android:textColor="@color/sunriseBlue"
+        />
 
     <Button
         android:id="@+id/buttonSalesHistory"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Sales History"
-        android:backgroundTint="@color/barkBrown"
-        android:textColor="@color/sunriseBlue"
-        app:layout_constraintTop_toBottomOf="@id/buttonInventory"
+        app:layout_constraintTop_toBottomOf="@+id/buttonInventory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:gravity="center"
+        android:backgroundTint="@color/barkBrown"
+        android:textColor="@color/sunriseBlue"
+        />
 
     <Button
         android:id="@+id/buttonGoToListingActivity"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Go To Listing Activity"
         app:layout_constraintTop_toBottomOf="@+id/buttonSalesHistory"

@@ -20,7 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import model.Order;
+
+import model.Sale;
 
 public class SalesActivity extends AppCompatActivity implements View.OnClickListener {
     private TableLayout tableLayout;
@@ -58,8 +59,8 @@ public class SalesActivity extends AppCompatActivity implements View.OnClickList
                         addTableHeader();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Order order = snapshot.getValue(Order.class);
-                            addTableRow(order);
+                            Sale sale = snapshot.getValue(Sale.class);
+                            addTableRow(sale);
                         }
                     }
 
@@ -79,7 +80,9 @@ public class SalesActivity extends AppCompatActivity implements View.OnClickList
         TextView quantityHeader = new TextView(this);
         quantityHeader.setText("Quantity");
         TextView totalPriceHeader = new TextView(this);
-        totalPriceHeader.setText("Total");
+        totalPriceHeader.setText("U. Price");
+        TextView priceHeader = new TextView(this);
+        priceHeader.setText("Total");
 
 
 
@@ -87,36 +90,44 @@ public class SalesActivity extends AppCompatActivity implements View.OnClickList
         header.addView(productHeader);
         header.addView(quantityHeader);
         header.addView(totalPriceHeader);
+        header.addView(priceHeader);
         tableLayout.addView(header);
     }
 
-    private void addTableRow(Order order) {
+    private void addTableRow(Sale sale) {
         TableRow row = new TableRow(this);
 
         TextView dateTextView = new TextView(this);
-        dateTextView.setText(order.getDate());
+        dateTextView.setText(sale.getDate());
         dateTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView productTextView = new TextView(this);
-        productTextView.setText(order.getProduct());
+        productTextView.setText(sale.getProduct());
         productTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView quantityTextView = new TextView(this);
-        quantityTextView.setText(String.valueOf(order.getQuantity()));
+        quantityTextView.setText(String.valueOf(sale.getQuantity()));
         quantityTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         TextView totalPriceTextView = new TextView(this);
-        totalPriceTextView.setText(String.valueOf(order.getTotalPrice()));
+        totalPriceTextView.setText(String.valueOf(sale.getTotalPrice()));
         totalPriceTextView.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        TextView priceTextView = new TextView(this);
+        priceTextView.setText(String.valueOf(sale.getPrice()));
+        priceTextView.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         row.addView(dateTextView);
         row.addView(productTextView);
         row.addView(quantityTextView);
         row.addView(totalPriceTextView);
+        row.addView(priceTextView);
+
 
         tableLayout.addView(row);
     }
