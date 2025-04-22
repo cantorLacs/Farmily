@@ -1,5 +1,6 @@
 package com.example.farmily;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -20,6 +21,7 @@ public class cartActivity extends AppCompatActivity {
     private TableLayout tableLayout;
     private Cart cart;
     private TextView totalPriceTextView;
+    float totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,8 @@ public class cartActivity extends AppCompatActivity {
 
         tableLayout = findViewById(R.id.tableLayout);
         Button buttonAccount = findViewById(R.id.buttonAccount);
-        totalPriceTextView = findViewById(R.id.totalPriceTextView); // Inicializa el TextView del total
+        totalPriceTextView = findViewById(R.id.totalPriceTextView);
+        Button buttonProceedToPayment = findViewById(R.id.buttonProceedToPayment);
 
         cart = (Cart) getIntent().getSerializableExtra("CART"); // Asegúrate de que Cart implemente Serializable
 
@@ -45,13 +48,18 @@ public class cartActivity extends AppCompatActivity {
         }
 
         buttonAccount.setOnClickListener(v -> finish()); // Regresar a la actividad anterior
+
+        // Set up click listener for the Proceed to Payment button
+        buttonProceedToPayment.setOnClickListener(v -> {
+            proceedToPayment();
+        });
     }
 
     private void displayCartItems() {
         ArrayList<Listing> productList = cart.getProductList();
         tableLayout.removeAllViews(); // Limpiar la tabla antes de agregar
 
-        float totalPrice = 0;
+        totalPrice = 0;
 
         // Agregar encabezados de la tabla
         TableRow headerRow = new TableRow(this);
@@ -77,6 +85,13 @@ public class cartActivity extends AppCompatActivity {
 
         // Mostrar el precio total
         totalPriceTextView.setText("Total: $" + totalPrice);
+    }
+
+    private void proceedToPayment() {
+        Intent intent = new Intent(cartActivity.this, PaymentActivity.class);
+        intent.putExtra("CART", cart); // Pass the cart object to PaymentActivity
+        intent.putExtra("TOTAL_PRICE", totalPrice);
+        startActivity(intent);
     }
 
     private TextView createTextView(String text) {
