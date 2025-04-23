@@ -15,6 +15,7 @@ import com.example.farmily.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.squareup.picasso.Picasso;
 
 public class ListingAdapter extends BaseAdapter {
     private ArrayList<Listing> listingArrayList;
@@ -69,8 +70,15 @@ public class ListingAdapter extends BaseAdapter {
         description.setText(listing.getDescription());
         price.setText(String.valueOf(listing.getPrice()));
 
-        int imageId = context.getResources().getIdentifier(listing.getImagePath(),"drawable",context.getPackageName());
-        picture.setImageResource(imageId);
+        //int imageId = context.getResources().getIdentifier(listing.getImagePath(),"drawable",context.getPackageName());
+        //picture.setImageResource(imageId);
+        String imageUrl = listing.getImagePath();
+
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.loading) // Optional placeholder while loading
+                .error(R.drawable.error)             // Optional error image
+                .into(picture);
 
         quantityMap.putIfAbsent(position, 1);
         textCounter.setText(String.valueOf(quantityMap.get(position)));

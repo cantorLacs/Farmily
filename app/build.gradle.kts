@@ -45,4 +45,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("org.kohsuke:github-api:1.318")
+    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation(libs.github.api)
 }
