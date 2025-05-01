@@ -91,7 +91,7 @@ public class InventoryActivity extends AppCompatActivity implements View.OnClick
 
         ImageView picture = new ImageView(this);
         picture.setLayoutParams(new LinearLayout.LayoutParams(300,300));
-        picture.setImageResource(R.drawable.grapes);
+        picture.setImageResource(R.drawable.error);
         picture.setPadding(30,30,30,30);
 
 

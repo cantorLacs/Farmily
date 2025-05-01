@@ -21,8 +21,8 @@ import java.nio.file.Files;
 public class GitHubUtilities {
 
     private static final String GITHUB_TOKEN = "";
-    private static final String GITHUB_OWNER = "";
-    private static final String GITHUB_REPO = "Farmily";
+    private static final String GITHUB_OWNER = "Andres94b";
+    private static final String GITHUB_REPO = "FarmilyImages";
     private static final String GITHUB_PHOTO_FOLDER = "Images";
 
 

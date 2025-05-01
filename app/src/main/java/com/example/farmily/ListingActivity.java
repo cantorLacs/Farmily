@@ -140,7 +140,9 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
 
 
         if (!photoPath.isEmpty() && spPhoto.getSelectedItemPosition() < photoPath.size()) {
-            listing.setImagePath(photoPath.get(spPhoto.getSelectedItemPosition()));
+            //listing.setImagePath(photoPath.get(spPhoto.getSelectedItemPosition()));
+            String photo = spPhoto.getSelectedItem().toString();
+            listing.setImagePath("https://raw.githubusercontent.com/Andres94b/FarmilyImages/main/Images/"+photo);
         } else {
             listing.setImagePath("");
         }
@@ -149,6 +151,7 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         listings.child(key).setValue(listing).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(this, "Listing Created Successfully", Toast.LENGTH_SHORT).show();
+                uploadPhoto(v);
                 clearFields();
             } else {
                 Toast.makeText(this, "Error: " + task.getException(), Toast.LENGTH_LONG).show();
@@ -195,6 +198,7 @@ public class ListingActivity extends AppCompatActivity implements View.OnClickLi
         spPhoto.setAdapter(adapter);
     }
 
+    // Probably to upload you need the token
     private void uploadPhoto(View view) {
         String photo = spPhoto.getSelectedItem().toString();
         GitHubUtilities.uploadFileToGithub(this, photo);
