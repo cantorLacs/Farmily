@@ -21,6 +21,8 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
     Button buttonGoToListingActivity;
     Button btnInventory;
     Button btnSalesHistory;
+    Button btnReturn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,8 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
         btnSalesHistory = findViewById(R.id.buttonSalesHistory);
         btnInventory.setOnClickListener(this);
         btnSalesHistory.setOnClickListener(this);
-
+        btnReturn = findViewById(R.id.buttonReturnHome);
+        btnReturn.setOnClickListener(this);
 
     }
 
@@ -59,6 +62,9 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         } else if (view.getId() == R.id.buttonGoToListingActivity){
             intent = new Intent(this, ListingActivity.class);
+            startActivity(intent);
+        }else if (view.getId() == R.id.buttonReturnHome){
+            intent = new Intent(this, ProductListActivity.class);
             startActivity(intent);
         }
     }
